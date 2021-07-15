@@ -6,9 +6,9 @@ export default function User () {
   const { user } = useUser()
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <Link href='/'>Voltar</Link>
       <h1>{user.name}</h1>
-    </div>
+    </main>
   )
 }

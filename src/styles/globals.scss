@@ -37,6 +37,22 @@ body, input, textarea, select, button {
   font: 400 1rem sans-serif;
 }
 
+main {
+  padding: 0 18px;
+
+  @media (min-width: 600px) {
+    padding: 0 5%;
+  }
+
+  @media (min-width: 800px) {
+    padding: 0 10%;
+  }
+
+  @media (min-width: 1080px) {
+    padding: 0 15%;
+  }
+}
+
 button {
   cursor: pointer;
 }

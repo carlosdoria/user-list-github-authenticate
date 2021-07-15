@@ -4,13 +4,15 @@ import Image from 'next/image'
 import { CardRepository } from 'components'
 import { useUser } from 'hooks/useUser'
 
+import styles from '../styles/index.module.scss'
+
 export default function App () {
   const { user, repositories, getUserRepositories, getRepositories } = useUser()
 
   const [ typeRequest, setTypeRequest ] = useState('repos')
 
   return (
-    <main>
+    <main className={styles.container}>
       <section>
         <input
           type='text'
