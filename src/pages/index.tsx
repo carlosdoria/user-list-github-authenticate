@@ -1,41 +1,80 @@
 import { useState } from 'react'
-import { api } from 'services/api'
-
-interface IRepository {
-  id: number
-  name: string
-  language: string
-  html_url: string
-  archived: boolean
-}
+import Link from 'next/link'
+import Image from 'next/image'
+import { CardRepository } from 'components'
+import { useUser } from 'hooks/useUser'
 
 export default function App () {
-  const [ timeRequest, setTimeRequest ] = useState<any>()
-  const [ repositories, setRepositories ] = useState<IRepository[]>()
+  const { user, repositories, getUserRepositories, getRepositories } = useUser()
 
-  async function getUserRepositories (username: string, typeRequest: string) {
-    if (timeRequest) clearTimeout(timeRequest)
-
-    setTimeRequest(setTimeout(async () => {
-      try {
-        const { data } = await api.get(`/${username}/${typeRequest}`)
-        // const dataFormated = data.map((repository: IRepository) => ({
-        //   id: repository.id,
-        //   name: repository.name,
-        //   language: repository.language,
-        //   html_url: repository.html_url,
-        //   archived: repository.archived,
-        // }))
-        console.log(data)
-      } catch (error) {
-        console.error(error)
-      }
-    }, 2000))
-  }
+  const [ typeRequest, setTypeRequest ] = useState('repos')
 
   return (
-    <>
-      <input type='text' placeholder='Nome do usuário' onChange={(event => getUserRepositories(event.target.value, 'repos'))} />
-    </>
+    <main>
+      <section>
+        <input
+          type='text'
+          placeholder='Nome do usuário'
+          onChange={(event => getUserRepositories(event.target.value, typeRequest))}
+        />
+        <div>
+          <button onClick={ () => {
+            getRepositories(user.login, 'repos')
+            setTypeRequest('repos')
+          }}>
+            Repositórios
+          </button>
+          <button onClick={ () => {
+            getRepositories(user.login, 'starred')
+            setTypeRequest('starred')
+          }}>
+            Favoritados
+          </button>
+        </div>
+      </section>
+
+      <section>
+        <h1>Usuário</h1>
+        {user.login &&
+          <div>
+            <Image
+              src={user.avatar_url}
+              width={100}
+              height={100}
+              alt='Foto do perfil'
+            />
+            <h3>{user.name}</h3>
+            <p>{user.bio}</p>
+            <Link href={`/user/${user.login}`}>Mais detalhes</Link>
+          </div>
+        }
+      </section>
+
+      <section>
+        <h1>
+          {typeRequest === 'repos' ?
+            'Repositórios do usuário'
+            :
+            'Repositórios favoritados'
+          }
+        </h1>
+
+        {repositories.length > 0 &&
+          <ul>
+            {repositories.map(repository => (
+              <CardRepository
+                key={repository.id}
+                name={repository.name}
+                language={repository.language}
+                html_url={repository.html_url}
+                stargazers_count={repository.stargazers_count}
+                forks_count={repository.forks_count}
+                archived={repository.archived}
+              />
+            ))}
+          </ul>
+        }
+      </section>
+    </main>
   )
 }
