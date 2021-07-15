@@ -1,8 +1,9 @@
 // import App from "next/app";
 import { AppProps /* , AppContext */ } from 'next/app'
 import Head from 'next/head'
+import { Header } from 'components'
 
-import { GlobalStyles } from '../styles/globals'
+import '../styles/globals.scss'
 
 function MyApp ({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +12,7 @@ function MyApp ({ Component, pageProps }: AppProps) {
         <title>Boilerplate</title>
         <meta name="description" content="My boilerplete" />
       </Head>
-      <GlobalStyles />
+      <Header />
       <Component {...pageProps} />
     </>
   )
