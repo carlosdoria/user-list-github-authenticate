@@ -17,8 +17,8 @@ module.exports = function (plop) {
       },
       {
         type: 'add',
-        path: '../src/components/{{pascalCase name}}/styles.ts',
-        templateFile: 'templates/components/styles.ts.hbs',
+        path: '../src/components/{{pascalCase name}}/styles.module.scss',
+        templateFile: 'templates/components/styles.module.scss.hbs',
       },
     ],
   })
@@ -40,8 +40,8 @@ module.exports = function (plop) {
       },
       {
         type: 'add',
-        path: '../src/pages/{{name}}/styles.ts',
-        templateFile: 'templates/pages/styles.ts.hbs',
+        path: '../src/pages/{{name}}/styles.module.scss',
+        templateFile: 'templates/pages/styles.module.scss.hbs',
       },
     ],
   })
