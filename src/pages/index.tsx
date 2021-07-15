@@ -11,7 +11,7 @@ interface IRepository {
 
 export default function App () {
   const [ timeRequest, setTimeRequest ] = useState<any>()
-  const [ repositories, setRepositories ] = useState()
+  const [ repositories, setRepositories ] = useState<IRepository[]>()
 
   async function getUserRepositories (username: string, typeRequest: string) {
     if (timeRequest) clearTimeout(timeRequest)
@@ -19,16 +19,14 @@ export default function App () {
     setTimeRequest(setTimeout(async () => {
       try {
         const { data } = await api.get(`/${username}/${typeRequest}`)
-        const dataFormated = data.map(repository => {
-          return {
-            id: repository.id,
-            name: repository.name,
-            language: repository.language,
-            html_url: repository.html_url,
-            archived: repository.archived,
-          }
-        })
-        console.log(dataFormated)
+        // const dataFormated = data.map((repository: IRepository) => ({
+        //   id: repository.id,
+        //   name: repository.name,
+        //   language: repository.language,
+        //   html_url: repository.html_url,
+        //   archived: repository.archived,
+        // }))
+        console.log(data)
       } catch (error) {
         console.error(error)
       }
