@@ -2,6 +2,7 @@
 import { AppProps /* , AppContext */ } from 'next/app'
 import Head from 'next/head'
 import { Header } from 'components'
+import { UserProvider } from 'hooks/useUser'
 
 import '../styles/globals.scss'
 
@@ -13,7 +14,9 @@ function MyApp ({ Component, pageProps }: AppProps) {
         <meta name="description" content="My boilerplete" />
       </Head>
       <Header />
-      <Component {...pageProps} />
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
     </>
   )
 }
