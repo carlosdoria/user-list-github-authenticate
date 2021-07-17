@@ -1,61 +1,25 @@
 import { useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { CardRepository } from 'components'
+import { CardRepository, SearchInput } from 'components'
 import { useUser } from 'hooks/useUser'
-import { GoSearch } from 'react-icons/go'
 
 import styles from '../styles/index.module.scss'
 
 export default function App () {
-  const inputRef = useRef<HTMLInputElement>(null)
   const { user, repositories, getUserRepositories, getRepositories } = useUser()
 
   const [ typeRequest, setTypeRequest ] = useState('repos')
 
-  function submitRequest (keyCode: string) {
-    if (keyCode === 'Enter') {
-      if (inputRef.current === null) return
-      getUserRepositories(inputRef.current.value, typeRequest)
-    }
+  function handleTypeRequest (type: string) {
+    setTypeRequest(type)
   }
 
   return (
     <main>
       <section className={styles.searchBar}>
         <h1 className={styles.searchBar__title}>Buscar por usuário github</h1>
-        <div className={styles.searchBar__boxInput}>
-          <GoSearch color='black' />
-          <input
-            type='text'
-            placeholder='Digite o nome do usuário'
-            // onChange={(event => getUserRepositories(event.target.value, typeRequest))}
-            // onKeyPress={event => getUserRepositories(event.target.value, typeRequest)}
-            onKeyPress={event => submitRequest(event.key)}
-            ref={inputRef}
-            className={`${styles.searchBar__input} ${styles.searchBar__input_a}`}
-          />
-        </div>
-        <div className={styles.searchBar__boxButtons}>
-          <button
-            className={`${styles.searchBar__button} ${typeRequest === 'repos' ? styles.searchBar__button_modSelected : ''}`}
-            onClick={ () => {
-              getRepositories(user.login, 'repos')
-              setTypeRequest('repos')
-            }}
-          >
-            Repositórios
-          </button>
-          <button
-            className={`${styles.searchBar__button} ${typeRequest === 'starred' ? styles.searchBar__button_modSelected : ''}`}
-            onClick={ () => {
-              getRepositories(user.login, 'starred')
-              setTypeRequest('starred')
-            }}
-          >
-            Favoritados
-          </button>
-        </div>
+        <SearchInput typeRequest={typeRequest} handleTypeRequest={handleTypeRequest} />
       </section>
 
       <section className={styles.user}>
@@ -99,8 +63,6 @@ export default function App () {
                 name={repository.name}
                 language={repository.language}
                 html_url={repository.html_url}
-                stargazers_count={repository.stargazers_count}
-                forks_count={repository.forks_count}
                 archived={repository.archived}
               />
             ))}

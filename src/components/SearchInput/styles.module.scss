@@ -1,0 +1,63 @@
+.container{
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 550px ) {
+    flex-direction: row;
+  }
+
+  &__boxInput {
+    // height: 3rem;
+    padding: .6rem;
+    background-color: var(--white);
+
+    border-radius: 1.8rem;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: 550px ) {
+      width: 350px;
+      // max-width: 450px;
+    }
+  }
+
+  &__input {
+    height: 100;
+    padding-left: .6rem;
+    border: none;
+    outline: none;
+    font-size: 18px;
+  }
+
+ &__boxButtons {
+   margin-top: 1rem;
+
+   display: flex;
+   justify-content: center;
+
+   @media (min-width: 550px ) {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+ }
+
+  &__button {
+    padding: .5rem .8rem;
+
+    background: var(--white);
+    border: none;
+
+    &:nth-child(1) {
+      border-top-left-radius: 5em;
+      border-bottom-left-radius: 5em;
+    }
+
+    &:nth-child(2) {
+      border-top-right-radius: 5em;
+      border-bottom-right-radius: 5em;    }
+  }
+
+  &__button_modSelected {
+    filter: brightness(.82);
+  }
+}
