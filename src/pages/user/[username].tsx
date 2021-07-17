@@ -19,8 +19,11 @@ export default function User () {
   return (
     <main className={styles.wrapper}>
       <Link href='/'>
-        <BiArrowBack size={30} />
+        <a className={styles.wrapper__link}>
+          <BiArrowBack size={30}/>
+        </a>
       </Link>
+
       <section className={styles.socialMediaDetails}>
         <div className={styles.socialMediaDetails__contentImage}>
           {user.avatar_url &&
