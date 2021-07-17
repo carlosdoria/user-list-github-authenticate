@@ -1,3 +1,107 @@
-.container {
+.socialMediaDetails {
+  display: flex;
+  flex-direction: column;
 
+  &__contentImage {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__image {
+    border-radius: 50%;
+  }
+
+  &__username {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  &__contentSocialMedia {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:first-child{
+      margin-right: 15px;
+    }
+  }
 }
+
+.userDetails{
+  margin-top: 2rem;
+
+  &__bio {
+    filter: brightness(.85);
+  }
+
+  &__link {
+    margin-top: .6rem;
+
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-left: .5rem;
+    }
+  }
+}
+
+@media (min-width: 600px ) {
+  .userDetails{
+    &__name {
+        font-size: 2rem;
+      }
+
+    &__bio {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+@media (min-width: 900px ) {
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+
+  .userDetails{
+    margin-top: 0;
+    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__name {
+      font-size: 2.6rem;
+    }
+
+    &__bio {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (min-width: 1080px ) {
+  .socialMediaDetails {
+    margin-left: 2rem;
+  }
+
+  .userDetails{
+    margin-left: 2rem;
+
+    &__name {
+        font-size: 2.6rem;
+      }
+
+    &__bio {
+        font-size: 1.2rem;
+      }
+    }
+  }

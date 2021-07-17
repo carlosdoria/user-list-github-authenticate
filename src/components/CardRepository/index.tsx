@@ -4,8 +4,6 @@ interface IRepository {
   name: string
   language: string
   html_url: string
-  stargazers_count: number
-  forks_count: number
   archived: boolean
 }
 
@@ -13,8 +11,6 @@ export function CardRepository ({
   name,
   language,
   html_url,
-  stargazers_count,
-  forks_count,
   archived,
 }: IRepository) {
   return (
