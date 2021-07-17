@@ -18,11 +18,22 @@ export function CardRepository ({
   archived,
 }: IRepository) {
   return (
-    <div>
-      <h1>{name}</h1>
-      <span>{archived ? 'Arquivado' : ''}</span>
-      <p>{language}</p>
-      <a href={html_url} target='_blank' rel="noreferrer">Ir para o repositório</a>
+    <div className={styles.card}>
+      <div className={styles.card__header}>
+        <h3 className={styles.card__username}>{name}</h3>
+        {archived &&
+          <span className={styles.card__status}>Arquivado</span>
+        }
+      </div>
+      <p className={styles.card__language}>{language}</p>
+      <a
+        href={html_url}
+        target='_blank'
+        rel="noreferrer"
+        className={styles.card__link}
+      >
+        Ir para o repositório
+      </a>
     </div>
   )
 }

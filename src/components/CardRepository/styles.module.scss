@@ -1,0 +1,39 @@
+.card {
+  max-width: 40rem;
+  margin-bottom: 1.2rem;
+  padding: .6rem .8rem;
+
+  border: 1px solid var(--white);
+  border-radius: 8px;
+
+  &__header {
+    margin-bottom: .4rem;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__username {
+    display: inline;
+    @media (min-width: 1080px ) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__status {
+    padding: .3rem .4rem;
+    font-size: .85rem;
+
+    background: #e91e63;
+    border-radius: 10px;
+  }
+
+  &__language {
+    margin-bottom: .4rem;
+    filter: brightness(.9);
+  }
+
+  &__link {
+    color: rgb(197, 114, 245);
+  }
+}
