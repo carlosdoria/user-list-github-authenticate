@@ -1,3 +1,117 @@
-.container {
+@mixin title {
+  margin-bottom: .8rem;
 
+  @media (min-width: 1080px ) {
+    font-size: 2.5rem;
+  }
+}
+
+.searchBar {
+  margin-bottom: 3rem;
+
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    @include title
+  }
+
+  &__boxInput {
+    // height: 3rem;
+    // width: 30rem;
+    padding: .6rem;
+    background-color: var(--white);
+
+    border-radius: 1.8rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    flex: 1;
+    height: 100;
+    padding-left: .6rem;
+    border: none;
+    outline: none;
+    font-size: 18px;
+  }
+
+ &__boxButtons {
+   margin-top: 1rem;
+
+   display: flex;
+   justify-content: center;
+ }
+
+  &__button {
+    padding: .5rem .8rem;
+
+    background: var(--white);
+    border: none;
+
+    &:nth-child(1) {
+      border-top-left-radius: 5em;
+      border-bottom-left-radius: 5em;
+    }
+
+    &:nth-child(2) {
+      border-top-right-radius: 5em;
+      border-bottom-right-radius: 5em;    }
+  }
+
+  &__button_modSelected {
+    filter: brightness(.82);
+  }
+}
+
+.user {
+  height: 10rem;
+
+  @media (min-width: 1080px ) {
+    height: 14rem;
+  }
+
+  &__title {
+    @include title
+  }
+
+
+  &__card {
+    display: flex;
+    align-items: center;
+  }
+
+  &__contentImage {
+    margin-right: 1rem;
+  }
+
+  &__image {
+    margin-right: 1rem;
+
+    border-radius: 50%;
+  }
+
+  &__username {
+    @media (min-width: 1080px ) {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__bio {
+    filter: brightness(.8);
+
+    @media (min-width: 1080px ) {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__link {
+    color: rgb(197, 114, 245);
+  }
+}
+
+.repositories {
+  &__title {
+    @include title
+  }
 }

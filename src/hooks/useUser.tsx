@@ -38,23 +38,20 @@ interface UserContext {
 const UserContext = createContext({} as UserContext)
 
 export function UserProvider ({ children }: UserProviderProps) {
-  const [ timeRequest, setTimeRequest ] = useState<any>()
   const [ repositories, setRepositories ] = useState<IRepository[]>([] as IRepository[])
   const [ user, setUser ] = useState<IUser>({} as IUser)
 
   async function getUserRepositories (username: string, typeRequest: string) {
-    if (timeRequest) clearTimeout(timeRequest)
-
-    setTimeRequest(setTimeout(async () => {
-      try {
-        const responseUser = await api.get(`/${username}`)
-        setUser(responseUser.data)
-        console.log('user', responseUser.data)
-        await getRepositories(responseUser.data.login, typeRequest)
-      } catch (error) {
-        console.error(error)
-      }
-    }, 1500))
+    try {
+      const responseUser = await api.get(`/${username}`)
+      setUser(responseUser.data)
+      console.log('user', responseUser.data)
+      await getRepositories(responseUser.data.login, typeRequest)
+    } catch (error) {
+      setUser({} as IUser)
+      setRepositories([])
+      console.error(error)
+    }
   }
 
   async function getRepositories (username: string, typeRequest: string) {
@@ -72,6 +69,7 @@ export function UserProvider ({ children }: UserProviderProps) {
       setRepositories(dataFormated)
       console.log('repos', responseRepos.data)
     } catch (error) {
+      setRepositories([])
       console.error(error)
     }
   }
