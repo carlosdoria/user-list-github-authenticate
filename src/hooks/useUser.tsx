@@ -46,7 +46,6 @@ export function UserProvider ({ children }: UserProviderProps) {
     try {
       const responseUser = await api.get(`/${username}`)
       setUser(responseUser.data)
-      console.log('user', responseUser.data)
       await getRepositories(responseUser.data.login, typeRequest)
     } catch (error) {
       setUser({} as IUser)
@@ -56,8 +55,6 @@ export function UserProvider ({ children }: UserProviderProps) {
   }
 
   async function getRepositories (username: string, typeRequest: string) {
-    console.log(username, typeRequest)
-
     try {
       const responseRepos = await api.get(`/${username}/${typeRequest}`)
       const dataFormated = responseRepos.data.map((repository: IRepository) => ({
@@ -68,7 +65,6 @@ export function UserProvider ({ children }: UserProviderProps) {
         archived: repository.archived,
       }))
       setRepositories(dataFormated)
-      console.log('repos', responseRepos.data)
     } catch (error) {
       setRepositories([])
       console.error(error)

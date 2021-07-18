@@ -61,7 +61,9 @@ export default function User () {
         {user.email &&
         <span className={styles.userDetails__link}>
           <AiOutlineMail />
-          <a>
+          <a
+            href={`mailto:${user.email}`}
+          >
             {user.email}
           </a>
         </span>
