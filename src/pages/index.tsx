@@ -24,14 +24,9 @@ export default function App () {
   async function post () {
     // const response = await apiAuth.post(`access_token?client_id=563737ece7b04efef268&client_secret=fad37c05e7ee2bfd9cb8a7f3e2e6fe2629a196af&code=${code}`)
     const response = await axios.post(`https://github.com/login/oauth/access_token?client_id=01a9d026afb70966d648&client_secret=fad37c05e7ee2bfd9cb8a7f3e2e6fe2629a196af&code=${code}`, {
-      withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
-      proxy: {
-        host: '192.168.0.11',
-        port: 3000
-      }
     })
     console.log('response', response)
 
