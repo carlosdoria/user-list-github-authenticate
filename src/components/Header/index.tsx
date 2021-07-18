@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
-import { apiAuth } from 'services/api'
 
 import styles from './styles.module.scss'
 
@@ -17,14 +16,7 @@ export function Header () {
       <nav>
         <ul>
           <li>
-            <a
-              href='https://github.com/login/oauth/authorize?client_id=01a9d026afb70966d648'
-              // target='_blank'
-              // rel="noreferrer"
-              className={styles.card__link}
-            >
-              Autenticar
-            </a>
+            <Link href="/">Home</Link>
           </li>
         </ul>
       </nav>

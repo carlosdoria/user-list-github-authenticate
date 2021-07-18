@@ -21,6 +21,7 @@ interface IUser {
   name: string
   login: string
   bio: string
+  email: string
   blog: string
   html_url: string
   public_repos: number

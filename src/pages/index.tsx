@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CardRepository, SearchInput } from 'components'
 import { useUser } from 'hooks/useUser'
 
 import styles from '../styles/index.module.scss'
-import { useRouter } from 'next/router'
-import { apiAuth } from 'services/api'
-import axios from 'axios'
 
 export default function App () {
   const { user, repositories, getUserRepositories, getRepositories } = useUser()
@@ -18,28 +15,8 @@ export default function App () {
     setTypeRequest(type)
   }
 
-  const router = useRouter()
-  const { code } = router.query
-
-  async function post () {
-    // const response = await apiAuth.post(`access_token?client_id=563737ece7b04efef268&client_secret=fad37c05e7ee2bfd9cb8a7f3e2e6fe2629a196af&code=${code}`)
-    const response = await axios.post(`https://github.com/login/oauth/access_token?client_id=01a9d026afb70966d648&client_secret=fad37c05e7ee2bfd9cb8a7f3e2e6fe2629a196af&code=${code}`, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    })
-    console.log('response', response)
-
-  }
-
-  // useEffect(() => {
-  //   post()
-  // }, [ code ])
-
   return (
     <main>
-      <button onClick={() => post()}>asdas</button>
-      {code}
       <section className={styles.searchBar}>
         <h1 className={styles.searchBar__title}>Buscar por usuário github</h1>
         <SearchInput typeRequest={typeRequest} handleTypeRequest={handleTypeRequest} />
