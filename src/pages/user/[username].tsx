@@ -5,6 +5,7 @@ import styles from './styles.module.scss'
 import { useUser } from 'hooks/useUser'
 import { useEffect } from 'react'
 import { BiLinkExternal, BiArrowBack } from 'react-icons/bi'
+import { AiOutlineMail } from 'react-icons/ai'
 
 export default function User () {
   const router = useRouter()
@@ -57,6 +58,14 @@ export default function User () {
       <section className={styles.userDetails}>
         <h1 className={styles.userDetails__name}>{user.name}</h1>
         <p className={styles.userDetails__bio}>{user.bio}</p>
+        {user.email &&
+        <span className={styles.userDetails__link}>
+          <AiOutlineMail />
+          <a>
+            {user.email}
+          </a>
+        </span>
+        }
         {user.blog &&
         <span className={styles.userDetails__link}>
           <BiLinkExternal />
